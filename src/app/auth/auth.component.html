@@ -1,0 +1,33 @@
+<div class="auth-form">
+  <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
+    <h1>{{isLoginMode ? 'Login' : 'Register'}}</h1>
+    <div class="error" *ngIf="error">
+      <p>{{error}}</p>
+    </div>
+    <label for="email">
+      <input
+        type="email"
+        placeholder="Email address"
+        id="email"
+        name="email"
+        ngModel
+        required>
+    </label>
+    <label for="password">
+      <input
+        type="password"
+        placeholder="Enter a password"
+        id="password"
+        name="password"
+        ngModel
+        required
+        minlength="6">
+    </label>
+
+    <button type="submit" [disabled]="!authForm.valid">
+      {{isLoginMode ? 'Login' : 'Create account'}}
+    </button>
+    <a (click)="onSwitchMode()">
+      {{isLoginMode ? 'Not registered?' : 'Already have an account?'}}</a>
+  </form>
+</div>
